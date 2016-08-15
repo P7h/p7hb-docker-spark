@@ -26,7 +26,7 @@ ENV PATH        $JAVA_HOME/bin:$SCALA_HOME/bin:$SBT_HOME/bin:$SPARK_HOME/bin:$SP
 
 # Download, uncompress and move all the required packages and libraries to their corresponding directories in /usr/local/ folder.
 RUN apt-get -y update && \
-    apt-get install -y vim tmux && \
+    apt-get install -y vim screen && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     wget -qO - ${SCALA_BINARY_DOWNLOAD_URL} | tar -xz -C /usr/local/ && \
@@ -45,6 +45,7 @@ WORKDIR /root
 # Expose 2 ports for monitoring.
 # SparkContext web UI on 4040 -- only available for the duration of the application.
 # Spark master’s web UI on 8080.
-EXPOSE 4040 8080
+# Spark worker web UI on 8081.
+EXPOSE 4040 8080 8081
 
 CMD ["/bin/bash"]

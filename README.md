@@ -15,19 +15,16 @@ There are 2 options for getting this image:
 ### Build this image
 Copy the [`Dockerfile`](Dockerfile) to a folder on your local machine and then invoke the following command.
 
-
     docker build -t p7hb/p7hb-docker-spark:1.6.2 .
-
 
 ### Pull the image
 
-
-    docker pull p7hb/p7hb-docker-spark
+    docker pull p7hb/p7hb-docker-spark:1.6.2
 
 
 ## Run the image
 
-    docker run --rm -ti -p 4040:4040 -p 8080:8080 -h spark --name=spark p7hb/p7hb-docker-spark:1.6.2
+    docker run --rm -ti -p 4040:4040 -p [8080-8081]:[8080-8081] -p 9999:9999 -h spark --name=spark p7hb/p7hb-docker-spark:1.6.2
 
 
 The above step will launch and run the image with:
@@ -86,7 +83,6 @@ All the required binaries have been added to the `PATH`.
 
     start-master.sh
 
-
 ### Start Spark Slave
 
     start-slave.sh spark://spark:7077
@@ -95,6 +91,40 @@ All the required binaries have been added to the `PATH`.
 
     spark-submit --class org.apache.spark.examples.SparkPi --master spark://spark:7077 $SPARK_HOME/lib/spark-examples*.jar 100
 
+OR even simpler
+
+    $SPARK_HOME/bin/run-example SparkPi 100
+
+Please note the first command above expects Spark Master and Slave to be running. And we can even check the Spark Web UI after executing this command. But with the second command, this is not possible.
+
 ### Start Spark Shell
 
     spark-shell --master spark://spark:7077
+
+### View Spark Master WebUI console
+
+[`http://192.168.99.100:8080/`](http://192.168.99.100:8080/)
+
+### View Spark Worker WebUI console
+
+[`http://192.168.99.100:8081/`](http://192.168.99.100:8081/)
+
+### View Spark WebUI console
+Only available for the duration of the application.
+
+[`http://192.168.99.100:4040/`](http://192.168.99.100:4040/)
+
+## Misc Docker commands
+
+### Find all the running containers
+
+    docker ps
+
+### Find IP Address of a specific container
+
+    docker inspect container_name | grep IPAddress
+
+### Find IP Address of the Docker machine
+This is the IP Address which needs to be used to look upto for all the exposed ports of the Docker container.
+
+    docker-machine ip default
