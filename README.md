@@ -1,4 +1,5 @@
-## Docker Image for Apache Spark
+# p7hb-docker-spark ![](https://img.shields.io/docker/automated/p7hb/p7hb-docker-spark.svg) [![HitCount](https://hitt.herokuapp.com/P7h/p7hb-docker-spark.svg)](https://github.com/P7h/p7hb-docker-spark) [![Docker Pulls](https://img.shields.io/docker/pulls/p7hb/p7hb-docker-spark.svg)](https://hub.docker.com/r/p7hb/p7hb-docker-spark/) [![Size](https://images.microbadger.com/badges/image/p7hb/p7hb-docker-spark.svg)](https://microbadger.com/images/p7hb/p7hb-docker-spark)
+
 This image contains the following softwares:
 
 * OpenJDK 64-Bit v1.8.0_102
@@ -7,7 +8,7 @@ This image contains the following softwares:
 * Apache Spark v1.6.2 
 
 ## Get this image
-There are 2 options for getting this image:
+There are 2 ways of getting this image:
 
 1. Build this image using [`Dockerfile`](Dockerfile) OR
 2. Pull the image directly from DockerHub.
@@ -24,14 +25,16 @@ Copy the [`Dockerfile`](Dockerfile) to a folder on your local machine and then i
 
 ## Run the image
 
-    docker run --rm -ti -p 4040:4040 -p [8080-8081]:[8080-8081] -p 9999:9999 -h spark --name=spark p7hb/p7hb-docker-spark:1.6.2
+    docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/p7hb-docker-spark:1.6.2
 
 
 The above step will launch and run the image with:
 
- * `root` user [as defined in the `Dockerfile`].
- * `spark` as host name.
- * `spark` container name.
+* `root` is the user we logged into.
+ * `spark` is the container name.
+ * `spark` is host name of this container. 
+ 	* This is very important as Spark Slaves are started using this host name as the master.
+ * The container exposes ports 4040, 8080, 8081 for Spark Web UI console(s).
 
 ## Check softwares and versions
 
@@ -116,15 +119,41 @@ Only available for the duration of the application.
 
 ## Misc Docker commands
 
+### Find IP Address of the Docker machine
+This is the IP Address which needs to be used to look upto for all the exposed ports of our Docker container.
+
+    docker-machine ip default
+
 ### Find all the running containers
 
     docker ps
 
+### Find all the running and stopped containers
+
+	docker ps -a
+
+### Show running list of containers
+
+	docker stats --all shows a running list of containers.
+
 ### Find IP Address of a specific container
 
-    docker inspect container_name | grep IPAddress
+    docker inspect <<Container_Name>> | grep IPAddress
 
-### Find IP Address of the Docker machine
-This is the IP Address which needs to be used to look upto for all the exposed ports of the Docker container.
+### Open new terminal to a Docker container
+We can open new terminal with new instance of container's shell with the following command.
 
-    docker-machine ip default
+    docker exec -it <<Container_ID>> /bin/bash #by Container ID
+
+OR
+
+    docker exec -it <<Container_Name>> /bin/bash #by Container Name
+
+
+## Contributing [![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](http://p7h.org/contact/)
+If you find any issues or would like to discuss further, please ping me on my Twitter handle [@P7h](http://twitter.com/P7h "» @P7h") or drop me an [email](http://p7h.org/contact/ "» Contact me").
+
+
+## License [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+Copyright &copy; 2016 Prashanth Babu.<br>
+Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).

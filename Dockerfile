@@ -25,8 +25,8 @@ ENV SPARK_HOME  /usr/local/spark
 ENV PATH        $JAVA_HOME/bin:$SCALA_HOME/bin:$SBT_HOME/bin:$SPARK_HOME/bin:$SPARK_HOME/sbin:$PATH
 
 # Download, uncompress and move all the required packages and libraries to their corresponding directories in /usr/local/ folder.
-RUN apt-get -y update && \
-    apt-get install -y vim screen && \
+RUN apt-get -yqq update && \
+    apt-get install -yqq vim screen && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     wget -qO - ${SCALA_BINARY_DOWNLOAD_URL} | tar -xz -C /usr/local/ && \
@@ -42,7 +42,7 @@ USER root
 # Working directory is set to the home folder of `root` user.
 WORKDIR /root
 
-# Expose 2 ports for monitoring.
+# Expose ports for monitoring.
 # SparkContext web UI on 4040 -- only available for the duration of the application.
 # Spark master’s web UI on 8080.
 # Spark worker web UI on 8081.
