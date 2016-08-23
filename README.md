@@ -1,4 +1,8 @@
-# p7hb-docker-spark ![](https://img.shields.io/docker/automated/p7hb/p7hb-docker-spark.svg) [![HitCount](https://hitt.herokuapp.com/P7h/p7hb-docker-spark.svg)](https://github.com/P7h/p7hb-docker-spark) [![Docker Pulls](https://img.shields.io/docker/pulls/p7hb/p7hb-docker-spark.svg)](https://hub.docker.com/r/p7hb/p7hb-docker-spark/) [![Size](https://images.microbadger.com/badges/image/p7hb/p7hb-docker-spark.svg)](https://microbadger.com/images/p7hb/p7hb-docker-spark)
+# p7hb-docker-spark 
+[![](https://images.microbadger.com/badges/version/p7hb/p7hb-docker-spark.svg)](http://microbadger.com/images/p7hb/p7hb-docker-spark) ![](https://img.shields.io/docker/automated/p7hb/p7hb-docker-spark.svg) [![Docker Pulls](https://img.shields.io/docker/pulls/p7hb/p7hb-docker-spark.svg)](https://hub.docker.com/r/p7hb/p7hb-docker-spark/) [![Size](https://images.microbadger.com/badges/image/p7hb/p7hb-docker-spark.svg)](https://microbadger.com/images/p7hb/p7hb-docker-spark) [![HitCount](https://hitt.herokuapp.com/P7h/p7hb-docker-spark.svg)](https://github.com/P7h/p7hb-docker-spark)
+
+Dockerfiles for ***Apache Spark***.<br>
+The image is available directly from [https://index.docker.io](https://hub.docker.com/u/p7hb/ "» Docker Hub").
 
 This image contains the following softwares:
 
@@ -150,7 +154,7 @@ OR
     docker exec -it <<Container_Name>> /bin/bash #by Container Name
 
 
-## Contributing [![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](http://p7h.org/contact/)
+## Problems? Questions? Contributions? [![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](http://p7h.org/contact/)
 If you find any issues or would like to discuss further, please ping me on my Twitter handle [@P7h](http://twitter.com/P7h "» @P7h") or drop me an [email](http://p7h.org/contact/ "» Contact me").
 
 
